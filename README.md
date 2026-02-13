@@ -9,6 +9,7 @@ Collection of skills for OpenClaw AI agents.
 | `kubectl` | Kubernetes CLI - manage clusters, pods, deployments, services |
 | `ovh` | OVHcloud CLI integration - manage DNS, VPS, servers, Public Cloud |
 | `talosctl` | Talos Linux CLI - manage immutable Kubernetes OS nodes |
+| `argocd` | Argo CD CLI - GitOps continuous delivery (app, repo, cluster and project management) |
 
 ## Installation
 
