@@ -6,6 +6,7 @@ Collection of skills for OpenClaw AI agents.
 
 | Skill | Description |
 |-------|-------------|
+| `kubectl` | Kubernetes CLI - manage clusters, pods, deployments, services |
 | `ovh` | OVHcloud CLI integration - manage DNS, VPS, servers, Public Cloud |
 
 ## Installation
