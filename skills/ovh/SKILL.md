@@ -1,19 +1,19 @@
 # OVH Skill
 
-Zarządzanie usługami OVHcloud przez `ovhcloud` CLI.
+Manage OVHcloud services via the official `ovhcloud` CLI.
 
-## Wymagania
-- `ovhcloud` CLI zainstalowane (`brew install --cask ovh/tap/ovhcloud-cli`)
-- Credentials w `~/.ovh.conf` lub env vars
+## Requirements
+- `ovhcloud` CLI installed (`brew install --cask ovh/tap/ovhcloud-cli`)
+- Credentials in `~/.ovh.conf` or environment variables
 
-## Autentykacja
+## Authentication
 
-### Metoda 1: Interactive login
+### Method 1: Interactive login
 ```bash
 ovhcloud login
 ```
 
-### Metoda 2: Config file (~/.ovh.conf)
+### Method 2: Config file (~/.ovh.conf)
 ```ini
 [default]
 endpoint=ovh-eu
@@ -24,7 +24,7 @@ application_secret=xxx
 consumer_key=xxx
 ```
 
-### Metoda 3: Environment variables
+### Method 3: Environment variables
 ```bash
 export OVH_ENDPOINT=ovh-eu
 export OVH_APPLICATION_KEY=xxx
@@ -32,21 +32,21 @@ export OVH_APPLICATION_SECRET=xxx
 export OVH_CONSUMER_KEY=xxx
 ```
 
-## Dostępne komendy
+## Available Commands
 
 ### DNS (domain-zone)
 ```bash
-# Lista rekordów
-ovhcloud domain-zone record list <domena>
+# List records
+ovhcloud domain-zone record list <domain>
 
-# Dodaj rekord A
-ovhcloud domain-zone record create <domena> --field-type A --target <ip> --sub-domain <subdomena>
+# Add A record
+ovhcloud domain-zone record create <domain> --field-type A --target <ip> --sub-domain <subdomain>
 
-# Usuń rekord
-ovhcloud domain-zone record delete <domena> <record_id>
+# Delete record
+ovhcloud domain-zone record delete <domain> <record_id>
 
-# Refresh strefy
-ovhcloud domain-zone refresh <domena>
+# Refresh zone
+ovhcloud domain-zone refresh <domain>
 ```
 
 ### VPS
@@ -56,7 +56,7 @@ ovhcloud vps get <service_id> --json
 ovhcloud vps reboot <service_id>
 ```
 
-### Serwery dedykowane (baremetal)
+### Dedicated Servers (baremetal)
 ```bash
 ovhcloud baremetal list
 ovhcloud baremetal get <service_id>
@@ -65,10 +65,10 @@ ovhcloud baremetal reinstall <service_id> --editor
 
 ### Public Cloud
 ```bash
-# Projekty
+# Projects
 ovhcloud cloud project list
 
-# Instancje
+# Instances
 ovhcloud cloud instance list
 ovhcloud cloud instance get <instance_id>
 
@@ -83,38 +83,38 @@ ovhcloud email-domain list
 ovhcloud email-mxplan list
 ```
 
-## Output formats
+## Output Formats
 - `--json` — JSON output
 - `--yaml` — YAML output  
 - `-f 'field'` — Extract specific field (gval)
 - `--filter 'condition'` — Filter results
 
-## Przykłady użycia
+## Usage Examples
 
-### Aktualizacja rekordu DNS
+### Update DNS record
 ```bash
-# Znajdź rekord
-ovhcloud domain-zone record list ksiazkomol.pl --filter 'subDomain=="api"' --json
+# Find record
+ovhcloud domain-zone record list example.com --filter 'subDomain=="api"' --json
 
-# Usuń stary
-ovhcloud domain-zone record delete ksiazkomol.pl <id>
+# Delete old
+ovhcloud domain-zone record delete example.com <id>
 
-# Dodaj nowy
-ovhcloud domain-zone record create ksiazkomol.pl \
+# Add new
+ovhcloud domain-zone record create example.com \
   --field-type A \
   --target 1.2.3.4 \
   --sub-domain api
 
 # Refresh
-ovhcloud domain-zone refresh ksiazkomol.pl
+ovhcloud domain-zone refresh example.com
 ```
 
-### Lista instancji w regionie
+### List instances by region
 ```bash
 ovhcloud cloud instance list --filter 'region=="GRA9"'
 ```
 
-## ⚠️ Ograniczenia
-- **NIGDY nie modyfikuj rekordów NS** bez explicit approval
-- Przed usunięciem — zawsze potwierdź z użytkownikiem
-- Używaj `--json` do parsowania wyników
+## ⚠️ Restrictions
+- **NEVER modify NS records** without explicit user approval
+- Always confirm with user before deleting resources
+- Use `--json` for parsing results programmatically
